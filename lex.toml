@@ -1,12 +1,10 @@
 [package]
 name        = "lex-pack-intermodal"
 version     = "0.1.0"
-description = "Intermodal domain pack — container custody + demurrage evidence for ports and rail, over lex-pack-custody, reusing lex-tms swap-slot inventory."
+description = "Intermodal domain pack — container/terminal dwell and demurrage, derived from gate-event timestamps rather than asserted. Shares its custody data at the DATA level (the `events` table) with lex-pack-custody, not a code import."
 
 [dependencies]
-lex-soft        = { git = "https://github.com/alpibrusl/lex-soft" }
-lex-pack-custody = { git = "https://github.com/alpibrusl/lex-pack-custody" }
-lex-trail       = { git = "https://github.com/alpibrusl/lex-trail" }
-lex-web         = { git = "https://github.com/alpibrusl/lex-web" }
-lex-schema      = { git = "https://github.com/alpibrusl/lex-schema" }
-lex-log         = { git = "https://github.com/alpibrusl/lex-log" }
+lex-soft   = { git = "https://github.com/alpibrusl/lex-soft" }
+lex-trail  = { git = "https://github.com/alpibrusl/lex-trail" }
+lex-web    = { git = "https://github.com/alpibrusl/lex-web" }
+lex-schema = { git = "https://github.com/alpibrusl/lex-schema" }
