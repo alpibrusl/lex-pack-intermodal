@@ -196,7 +196,7 @@ fn stays(db :: Db, gates :: List[Gate], now_ms :: Int) -> [sql] List[jv.Json] {
 
 fn mount(r :: router.Router, db :: Db) -> [sql] router.Router {
   let __t := ensure_tables(db)
-  let with_terms := router.route_effectful(r, "POST", "/intermodal/terms", fn (c :: ctx.Ctx) -> [io, time, crypto, random, sql, fs_read, fs_write, net, concurrent, llm, proc] resp.Response {
+  let with_terms := router.route_effectful(r, "POST", "/intermodal/terms", fn (c :: ctx.Ctx) -> [io, time, crypto, random, sql, fs_read, fs_write, net, concurrent, llm, proc, approval] resp.Response {
     match jv.parse(c.body) {
       Err(_) => resp.bad_request("{\"error\":\"invalid json\"}"),
       Ok(j) => {
@@ -220,7 +220,7 @@ fn mount(r :: router.Router, db :: Db) -> [sql] router.Router {
       },
     }
   })
-  router.route_effectful(with_terms, "GET", "/intermodal/containers/:ref/demurrage", fn (c :: ctx.Ctx) -> [io, time, crypto, random, sql, fs_read, fs_write, net, concurrent, llm, proc] resp.Response {
+  router.route_effectful(with_terms, "GET", "/intermodal/containers/:ref/demurrage", fn (c :: ctx.Ctx) -> [io, time, crypto, random, sql, fs_read, fs_write, net, concurrent, llm, proc, approval] resp.Response {
     let ref := match ctx.path_param(c, "ref") {
       Some(s) => s,
       None => "",
